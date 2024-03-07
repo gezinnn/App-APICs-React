@@ -22,7 +22,6 @@ namespace APIUsuarios.Controllers
         public IActionResult Cadastrar([FromBody] UsuarioDTO usuario)
         {
             var dao = new UsuarioDAO();
-
             var usuarioExiste = dao.VerificarUsuario(usuario);
 
             if (usuarioExiste)
@@ -30,6 +29,7 @@ namespace APIUsuarios.Controllers
                 var mensagem = "E-mail já existe na base de dados";
                 return Conflict(mensagem);
             }
+
             dao.Cadastrar(usuario);
             return Ok();
         }
